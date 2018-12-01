@@ -1,7 +1,9 @@
 # Advent of Code 2018
 <h2 id="day01">Day 1</h2>
+*There was an elaborate story about time travel and hurtling through the air and an elf that gives you a strange device. But it was a little too long, so here's [a link to it](https://adventofcode.com/2018/day/1)*
 
 ### Part 1
+
 After feeling like you've been falling for a few minutes, you look at the device's tiny screen. "Error: Device must be calibrated before first use. Frequency drift detected. Cannot maintain destination lock." Below the message, the device shows a sequence of changes in frequency (your puzzle input). A value like +6 means the current frequency increases by 6; a value like -3 means the current frequency decreases by 3.
 
 For example, if the device displays frequency changes of +1, -2, +3, +1, then starting from a frequency of zero, the following changes would occur:
