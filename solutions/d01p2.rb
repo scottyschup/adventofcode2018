@@ -1,4 +1,4 @@
-input = File.new('./01_input.txt').readlines()
+input = File.new('../inputs/01.txt').readlines()
 freq = 0
 freqs = [true]
 neg_freqs = []
@@ -23,4 +23,4 @@ until done
   end
 end
 
-puts freq
+puts freq #=> 72889
