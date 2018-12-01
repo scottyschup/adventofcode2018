@@ -1,5 +1,6 @@
 # Advent of Code 2018
 <h2 id="day01">Day 1</h2>
+
 *There was an elaborate story about time travel and hurtling through the air and an elf that gives you a strange device. But it was a little too long, so here's [a link to it](https://adventofcode.com/2018/day/1)*
 
 ### Part 1
