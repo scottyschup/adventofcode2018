@@ -1,4 +1,13 @@
+# PART 1
 input = File.new('../inputs/01.txt').readlines()
+freq = 0
+input.each do |freq_delta|
+  freq += freq_delta.to_i
+end
+
+puts freq #=> 518
+
+# PART 2
 freq = 0
 freqs = [true]
 neg_freqs = []

@@ -123,7 +123,7 @@ class Board
   end
 
   def add_cell(char, y, x)
-    puts "x: #{x}, y: #{y}, char: #{char}"
+    puts("x: #{x}, y: #{y}, char: #{char}") if verbose?
 
     if PATHS.keys.include?(char)
       args = [:'/', :'\\'].include?(char) ? handle_curve(PATHS[char], x, y) : PATHS[char]
@@ -158,8 +158,10 @@ end
 class Game
   attr_accessor :board
 
-  def initialize(last_cart: true)
+  def initialize(last_cart: true, verbose: false)
     @game_over = false
+    @crash = nil
+    @verbose = verbose
     @last_cart = last_cart
     @board = Board.new
     fill_board!
@@ -195,20 +197,30 @@ class Game
     !collisions.empty?
   end
 
-  def run
+  def verbose?
+    @verbose
+  end
+
+  def run(verbose: false)
+    @verbose = verbose
     i = 1
     until game_over?
-      puts "Tick ##{i}"
+      puts("Tick ##{i}") if verbose?
       @board.sort_carts!
       step_forward
       i += 1
     end
+    @output
   end
 
   def game_over?
-    return true if !@last_cart && @crash
+    if !@last_cart && @crash
+      @output = @crash
+      return true
+    end
     if @board.carts.length == 1
-      puts @board.carts[0]
+      cell = @board.carts[0].curr_cell
+      @output = "#{cell.x},#{cell.y}"
       return true
     end
     false
@@ -216,24 +228,33 @@ class Game
 
   def step_forward
     removals = []
-    puts "Carts (n = #{@board.carts.length})"
+    puts("Carts (n = #{@board.carts.length})") if verbose?
     @board.carts.each do |cart|
-      puts "\t#{cart}"
+      puts("\t#{cart}") if verbose?
       ∆_x, ∆_y = DIRS[cart.curr_dir]
       new_x = cart.curr_cell.x + ∆_x
       new_y = cart.curr_cell.y + ∆_y
-      cart.curr_cell = @board.cell_at(new_x, new_y)
+      cell = @board.cell_at(new_x, new_y)
+      cart.curr_cell = cell
       if collision?
-        @crash = true
+        @crash = "#{cell.x},#{cell.y}"
         removals += collisions
       end
     end
     unless removals.empty?
-      puts "Collisions:"
+      puts("Collisions:") if verbose?
       removals.each do |cart|
-        puts "\t#{cart}"
+        puts("\t#{cart}") if verbose?
         @board.carts.delete(cart)
       end
     end
   end
+end
+
+if __FILE__ == $PROGRAM_NAME
+  g = Game.new last_cart: false
+  puts "Part 1: #{g.run}"
+
+  g2 = Game.new
+  puts "Part 2: #{g2.run}"
 end
