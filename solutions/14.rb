@@ -123,14 +123,12 @@ class RecipeGame
     @round = 0
     @progress = 0
     @start_time = Time.now
-    @seen = 0
 
     until search? ? pattern_index_found? : target_reached?
       tick
       @round += 1
     end
 
-    puts "seen: #{@seen}" if search?
     puts "scoreboard length: #{@scoreboard_length}"
     @pattern_index || next_n_chars(10)
   end
