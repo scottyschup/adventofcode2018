@@ -141,7 +141,6 @@ if __FILE__ == $PROGRAM_NAME
   test_recipes = ENV['TEST_RECIPES'] || 0
   test_recipes = test_recipes.to_i if test_recipes
   target_pattern = ENV['TARGET_PATTERN']
-  # Part 1
   rg = RecipeGame.new(test_recipes: test_recipes, target_pattern: target_pattern, initial_scoreboard: [3, 7])
   puts rg.run(verbose: verbose)
 end

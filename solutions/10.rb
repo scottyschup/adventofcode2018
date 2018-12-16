@@ -126,6 +126,6 @@ end
 
 if __FILE__ == $PROGRAM_NAME
   verbose = ENV['VERBOSE'] != 'false' ? true : false
-  mf = MessageFinder.new(verbose: verbose, fps: 5, iter: 10800)
+  mf = MessageFinder.new(verbose: verbose, fps: 20, iter: 8800)
   puts mf.run
 end
