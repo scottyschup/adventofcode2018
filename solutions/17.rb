@@ -65,7 +65,7 @@ input.each do |line|
   end
 end
 
-p min_max = { x_max: x_max, x_min: x_min, y_max: y_max }
+min_max = { x_max: x_max, x_min: x_min, y_max: y_max }
 
 DELTAS = {
   up: [0, -1],
@@ -510,3 +510,31 @@ if __FILE__ == $PROGRAM_NAME
   puts "water: #{water.length}"
   p water.keys if ENV['VERBOSE'].to_i == 1
 end
+
+# FROM MERGE CONFLICT:
+# new_tip = move(:down, tip)
+# if can_move?(:down, tip, **resources, **min_max)
+#   water[new_tip] = true
+#   next agg << new_tip
+# elsif out_of_bounds?(new_tip, **min_max)
+#   next agg
+# else
+#   walls = 0
+#   %i(left right).each do |dir|
+#     curr_tip = tip
+#     dead_end = no_floor = out_of_bounds = false
+#
+#     until no_floor || dead_end
+#       next_tip = move(dir, curr_tip)
+#       if can_move?(dir, curr_tip, **resources, **min_max)
+#         curr_tip = next_tip
+#         water[curr_tip] = true
+#         if can_move?(:down, curr_tip, **resources, **min_max)
+#           no_floor = true
+#           agg << curr_tip if no_floor
+#         end
+#       elsif clay_or_water?(next_tip, **resources)
+#         dead_end = true
+#         walls += 1
+#       elsif out_of_bounds?(next_tip, **min_max)
+#         dead_end = true
