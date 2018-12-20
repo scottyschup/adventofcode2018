@@ -477,28 +477,6 @@ if __FILE__ == $PROGRAM_NAME
     puts
     sleep 0.03 if print_grid == 1
 
-    if i >= stop_at
-      prompt = "Enter [n] to go to next round\n      [c] to continue program\n      [x] to exit program"
-      done = false
-
-      until done
-        puts prompt
-        resp = gets.chomp
-        case resp
-        when 'n'
-          stop_at += 1
-          done = true
-        when 'c'
-          stop_at = Float::INFINITY
-          done = true
-        when 'x'
-          spring_tips = []
-          done = true
-        else
-          puts "Invalid entry: #{resp}"
-        end
-      end
-    end
   end
 
   # Final summary
